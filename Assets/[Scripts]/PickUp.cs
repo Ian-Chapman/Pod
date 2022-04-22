@@ -7,11 +7,6 @@ public class PickUp : MonoBehaviour
     public float pickUpRange = 5;
     private GameObject heldObject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
