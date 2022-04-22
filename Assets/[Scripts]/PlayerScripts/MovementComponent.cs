@@ -11,12 +11,16 @@ public class MovementComponent : MonoBehaviour
     float runSpeed = 10;
     //[SerializeField]
     //float jumpForce = 5;
+    [SerializeField]
+    float moveForce = 250;
 
     //components
     private PlayerController playerController;
     Rigidbody rigidbody;
     Animator playerAnimator;
     public GameObject followTarget;
+    public GameObject grabber;
+    private bool isGrabbed = false;
 
     //references
     Vector2 inputVector = Vector2.zero;
@@ -30,18 +34,26 @@ public class MovementComponent : MonoBehaviour
     public readonly int isJumpingHash = Animator.StringToHash("IsJumping");
     public readonly int isRunningHash = Animator.StringToHash("IsRunning");
 
+    public GameObject trunk;
+
+    public float pickUpRange = 5;
+    public GameObject heldObject;
+    public Transform holdParent;
+
     private void Awake()
     {
         playerAnimator = GameObject.Find("Pod").GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
 
+
         if (!GameManager.instance.cursorActive)
         {
             AppEvents.InvokeMouseCursorEnable(false);
         }
 
-        
+        Cursor.lockState = CursorLockMode.Confined;
+
     }
 
     // Start is called before the first frame update
@@ -91,8 +103,6 @@ public class MovementComponent : MonoBehaviour
         Vector3 movementDirection = moveDirection * (currentSpeed * Time.deltaTime);
 
         transform.position += movementDirection;
-
-
     }
 
     public void OnMovement(InputValue value)
@@ -111,7 +121,7 @@ public class MovementComponent : MonoBehaviour
     {
 
         playerController.isJumping = value.isPressed;
-        rigidbody.AddForce((transform.up + moveDirection) * walkSpeed, ForceMode.Impulse);
+        rigidbody.AddForce((transform.up + moveDirection) * runSpeed, ForceMode.Impulse);
         //playerAnimator.SetBool(isJumpingHash, playerController.isJumping);
     }
 
@@ -125,6 +135,82 @@ public class MovementComponent : MonoBehaviour
     {
         lookInput = value.Get<Vector2>();
     }
+
+    //public void OnGrab(InputValue value)
+    //{
+    //    playerController.isGrabbing = value.isPressed;
+    //}
+
+    public void OnGrab(InputValue value)
+    {
+        playerController.isGrabbing = value.isPressed;
+
+        if (playerController.isGrabbing = value.isPressed)
+        {
+            Debug.Log("Grab!");
+
+            if (heldObject == null)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+                {
+                    PickupObject(hit.transform.gameObject);
+                }
+            }
+            else
+            {
+                OnRelease(value);
+            }
+
+        }
+
+        if (heldObject != null)
+        {
+            MoveObject();
+        }
+    }
+
+    public void OnRelease(InputValue value)
+    {
+        playerController.isReleased = value.isPressed;
+
+        if (playerController.isReleased = value.isPressed)
+        {
+            Debug.Log("Released");
+            Rigidbody heldRig = heldObject.GetComponent<Rigidbody>();
+            heldRig.useGravity = true;
+            heldRig.isKinematic = false;
+            heldRig.drag = 1;
+
+            heldObject.transform.parent = null;
+            heldObject = null;
+        }
+    }
+
+    //=================================================================== Helper Functions ===================================================
+    void MoveObject()
+    {
+        if (Vector3.Distance(heldObject.transform.position, holdParent.position) > 0.1f)
+        {
+            Vector3 moveDirection = (holdParent.position - heldObject.transform.position);
+            heldObject.GetComponent<Rigidbody>().AddForce(moveDirection * moveForce);
+        }
+    }
+
+    void PickupObject(GameObject pickObj)
+    {
+        if (pickObj.GetComponent<Rigidbody>())
+        {
+            Rigidbody objRig = pickObj.GetComponent<Rigidbody>();
+            objRig.useGravity = false;
+            objRig.isKinematic = true;
+            objRig.drag = 2;
+
+            objRig.transform.parent = holdParent;
+            heldObject = pickObj;
+        }
+    }
+    //=================================================================== Helper Functions ===================================================
 
 
 
@@ -152,6 +238,12 @@ public class MovementComponent : MonoBehaviour
         {
             playerController.isJumping = false;
             //rigidbody.useGravity = false;
+        }
+
+        if (other.gameObject.tag == "Pickup" && isGrabbed)
+        {
+            //other.transform.parent = transform;
+            other.transform.position = transform.position;
         }
     }
 }
