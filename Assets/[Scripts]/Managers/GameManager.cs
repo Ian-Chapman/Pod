@@ -27,8 +27,7 @@ public class GameManager : Singleton<GameManager>
     {
         
         AppEvents.MouseCursorEnabled += EnableCursor;
-        
-        
+    
     }
 
     private void OnDisable()

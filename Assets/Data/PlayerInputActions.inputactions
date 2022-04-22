@@ -30,14 +30,6 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "Aim",
-                    "type": "Button",
-                    "id": "b970a51b-d9d8-480a-b5e0-cf5042bffd3f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
                     "name": "Look",
                     "type": "Value",
                     "id": "d2246929-94af-4cff-80db-fd8ad135b9bf",
@@ -46,20 +38,12 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "Reload",
+                    "name": "Dive",
                     "type": "Button",
-                    "id": "40b9ca76-c217-4d65-bd1e-8051808268c0",
+                    "id": "e2b65956-dd55-4666-b4de-431e03081b0c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
-                },
-                {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "54a7b131-4060-48e7-a971-df2e9fc9e5fc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -142,17 +126,6 @@
                 },
                 {
                     "name": "",
-                    "id": "3a0f5733-976e-4a6f-bc72-827c1d038596",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "01de9735-9d62-492f-ab67-51c1344bbd2f",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -164,23 +137,12 @@
                 },
                 {
                     "name": "",
-                    "id": "4228c63e-0a24-442b-ae44-141f611ae9c9",
-                    "path": "<Keyboard>/r",
+                    "id": "ed427c9c-f3c6-4933-af6c-c4a51c20f1de",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reload",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "11a2d206-9fcd-4dd1-beb3-a56857babd7d",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fire",
+                    "action": "Dive",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

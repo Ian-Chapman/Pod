@@ -9,8 +9,8 @@ public class MovementComponent : MonoBehaviour
     float walkSpeed = 5;
     [SerializeField]
     float runSpeed = 10;
-    [SerializeField]
-    float jumpForce = 5;
+    //[SerializeField]
+    //float jumpForce = 5;
 
     //components
     private PlayerController playerController;
@@ -30,11 +30,9 @@ public class MovementComponent : MonoBehaviour
     public readonly int isJumpingHash = Animator.StringToHash("IsJumping");
     public readonly int isRunningHash = Animator.StringToHash("IsRunning");
 
-    public readonly int aimVerticalHash = Animator.StringToHash("AimVertical");
-
     private void Awake()
     {
-        playerAnimator = GetComponent<Animator>();
+        playerAnimator = GameObject.Find("Pod").GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
 
@@ -42,6 +40,8 @@ public class MovementComponent : MonoBehaviour
         {
             AppEvents.InvokeMouseCursorEnable(false);
         }
+
+        
     }
 
     // Start is called before the first frame update
@@ -80,13 +80,6 @@ public class MovementComponent : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
 
         followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-        //playerAnimator.SetFloat(aimVerticalHash, 0);
-
-        ///Movement
-        if (playerController.isJumping)
-        {
-            return;
-        }
 
         if (!(inputVector.magnitude > 0))
         {
@@ -112,45 +105,53 @@ public class MovementComponent : MonoBehaviour
     public void OnRun(InputValue value)
     { 
         playerController.isRunning = value.isPressed;
-        playerAnimator.SetBool(isRunningHash, playerController.isRunning);
-
     }
 
     public void OnJump(InputValue value)
     {
-        if (playerController.isJumping)
-        {
-            return;
-        }
 
         playerController.isJumping = value.isPressed;
-        rigidbody.AddForce((transform.up + moveDirection) * jumpForce, ForceMode.Impulse);
-        playerAnimator.SetBool(isJumpingHash, playerController.isJumping);
+        rigidbody.AddForce((transform.up + moveDirection) * walkSpeed, ForceMode.Impulse);
+        //playerAnimator.SetBool(isJumpingHash, playerController.isJumping);
     }
 
-    public void OnAim(InputValue value)
+    public void OnDive(InputValue value)
     {
-        playerController.isAiming = value.isPressed;
+        playerController.isDiving = value.isPressed;
+        rigidbody.AddForce((-transform.up + moveDirection) * (runSpeed * 2), ForceMode.Impulse);
     }
 
     public void OnLook(InputValue value)
     {
         lookInput = value.Get<Vector2>();
-        
-
-        //if we aim up, down, adjust animations to have a mask that will let us properly animate aim
     }
 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (!collision.gameObject.CompareTag("Ground") && !playerController.isJumping)
+        if (!other.gameObject.CompareTag("Ground") && !playerController.isJumping)
         {
             return;
         }
 
-        playerController.isJumping = false;
-        playerAnimator.SetBool(isJumpingHash, false);
+        if (other.gameObject.tag == "Ground")
+        {
+            playerController.isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //if (!other.gameObject.CompareTag("Water Surface") && !playerController.isJumping)
+        //{
+        //    return;
+        //}
+
+        if (other.gameObject.tag == "Water Surface")
+        {
+            playerController.isJumping = false;
+            //rigidbody.useGravity = false;
+        }
     }
 }
