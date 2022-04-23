@@ -1593,7 +1593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -2640,7 +2640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4263143694624190774, guid: 3393587f47c4d6c478dd58eb52b68f44, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4263143694624190774, guid: 3393587f47c4d6c478dd58eb52b68f44, type: 3}
       propertyPath: m_Shadows.m_Type
@@ -2655,6 +2655,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 132618668258683144, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022418601450330413, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730578356189139853, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730578356213315375, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730578356299583091, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730578356374837566, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2988771868146238621, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
       propertyPath: m_IsKinematic
       value: 1
@@ -2666,6 +2690,10 @@ PrefabInstance:
     - target: {fileID: 5249491512367239969, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963883321749096450, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8505088494794992511, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
       propertyPath: m_IsTrigger

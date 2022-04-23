@@ -11,7 +11,6 @@ public class GameUIController : MonoBehaviour
     public GameObject pauseButton;
     public GameObject pausePanel;
     public GameObject topPanel;
-    public GameObject depthPanel;
 
     private void Start()
     {
@@ -24,7 +23,6 @@ public class GameUIController : MonoBehaviour
         Time.timeScale = 0;
         pausePanel.SetActive(true);
         topPanel.SetActive(false);
-        depthPanel.SetActive(false);
         movementComponent.aimSensitivity = 0;
         audioSource.Pause();
     }
@@ -34,7 +32,6 @@ public class GameUIController : MonoBehaviour
         Time.timeScale = 1;
         pausePanel.SetActive(false);
         topPanel.SetActive(true);
-        depthPanel.SetActive(true);
         movementComponent.aimSensitivity = 3.5f;
         audioSource.Play();
     }
