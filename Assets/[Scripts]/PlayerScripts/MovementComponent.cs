@@ -14,6 +14,11 @@ public class MovementComponent : MonoBehaviour
     [SerializeField]
     float moveForce = 250;
 
+    public AudioSource boostUpEffect;
+    public AudioSource diveEffect;
+    public AudioSource grabEffect;
+    public AudioSource releaseEffect;
+
     //components
     private PlayerController playerController;
     Rigidbody rigidbody;
@@ -122,13 +127,14 @@ public class MovementComponent : MonoBehaviour
 
         playerController.isJumping = value.isPressed;
         rigidbody.AddForce((transform.up + moveDirection) * runSpeed, ForceMode.Impulse);
-        //playerAnimator.SetBool(isJumpingHash, playerController.isJumping);
+        boostUpEffect.Play();
     }
 
     public void OnDive(InputValue value)
     {
         playerController.isDiving = value.isPressed;
         rigidbody.AddForce((-transform.up + moveDirection) * (runSpeed * 2), ForceMode.Impulse);
+        diveEffect.Play();
     }
 
     public void OnLook(InputValue value)
@@ -148,13 +154,14 @@ public class MovementComponent : MonoBehaviour
         if (playerController.isGrabbing = value.isPressed)
         {
             Debug.Log("Grab!");
-
+            
             if (heldObject == null)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
                     PickupObject(hit.transform.gameObject);
+                    grabEffect.Play();
                 }
             }
             else
@@ -176,6 +183,7 @@ public class MovementComponent : MonoBehaviour
 
         if (playerController.isReleased = value.isPressed)
         {
+            releaseEffect.Play();
             Debug.Log("Released");
             Rigidbody heldRig = heldObject.GetComponent<Rigidbody>();
             heldRig.useGravity = true;

@@ -12,10 +12,13 @@ public class TimerComonent : MonoBehaviour
 
     public Transform player;
 
+    GameUIController gameUIController;
+
 
     private void Start()
     {
         timerText.enabled = false;
+        gameUIController = GameObject.Find("GameCanvas").GetComponent<GameUIController>();
     }
 
     // Update is called once per frame
@@ -32,7 +35,7 @@ public class TimerComonent : MonoBehaviour
         {
             timeLeft = 0;
             timerText.text = "0".ToString();
-            SceneManager.LoadScene("GameOver");
+            //SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -49,7 +52,15 @@ public class TimerComonent : MonoBehaviour
         {
             timerText.enabled = false;
             timeLeft = 10;
+            StartCoroutine(RenewTimer());
         }
+    }
+
+    private IEnumerator RenewTimer()
+    {
+        gameUIController.dummyTimer.SetActive(true);
+        yield return new WaitForSeconds(3.5f);
+        gameUIController.dummyTimer.SetActive(false);
     }
 
 }

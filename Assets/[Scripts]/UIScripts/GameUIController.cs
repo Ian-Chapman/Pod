@@ -7,7 +7,7 @@ using TMPro;
 public class GameUIController : MonoBehaviour
 {
     public AudioSource musicSource;
-    public AudioSource soundEffectSource;
+    public AudioSource buttonEffectSource;
     MovementComponent movementComponent;
 
     public GameObject pauseButton;
@@ -15,20 +15,27 @@ public class GameUIController : MonoBehaviour
     public GameObject topPanel;
 
     public TextMeshProUGUI garbageText;
+
+    public GameObject dummyTimer;
+
+    public Animator UIAnimator;
     
     [SerializeField]
     public int garbageCollected;
+
+
+
+    private void Start()
+    {
+        pausePanel.SetActive(false);
+        dummyTimer.SetActive(false);
+        movementComponent = GameObject.Find("PlayerCharacter").GetComponent<MovementComponent>();
+    }
 
     public void Update()
     {
         garbageText.text = "" + garbageCollected.ToString();
         CheckForWin();
-    }
-
-    private void Start()
-    {
-        pausePanel.SetActive(false);
-        movementComponent = GameObject.Find("PlayerCharacter").GetComponent<MovementComponent>();
     }
 
     public void OnPauseButtonPressed()
@@ -38,6 +45,7 @@ public class GameUIController : MonoBehaviour
         topPanel.SetActive(false);
         movementComponent.aimSensitivity = 0;
         musicSource.Pause();
+        buttonEffectSource.Play();
     }
 
     public void OnResumeButtonPressed()
@@ -47,17 +55,20 @@ public class GameUIController : MonoBehaviour
         topPanel.SetActive(true);
         movementComponent.aimSensitivity = 3.5f;
         musicSource.Play();
+        buttonEffectSource.Play();
     }
 
     public void OnRestartButtonPressed()
     {
         Time.timeScale = 1;
+        buttonEffectSource.Play();
         SceneManager.LoadScene("GameScene");
     }
 
     public void OnMainMenuButtonPressed()
     {
         Time.timeScale = 1;
+        buttonEffectSource.Play();
         SceneManager.LoadScene("MainMenu");
     }
 

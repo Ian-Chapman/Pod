@@ -6,6 +6,8 @@ public class DropZoneBehaviour : MonoBehaviour
 {
     GameUIController gameUIController;
 
+    public AudioSource scorePoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class DropZoneBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Pickup")
         {
             gameUIController.garbageCollected++;
+            scorePoint.Play();
         }
     }
 }
