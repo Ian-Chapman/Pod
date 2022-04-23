@@ -74,9 +74,9 @@ public class GameUIController : MonoBehaviour
 
     private void CheckForWin()
     {
-        if (garbageCollected >= 15)
+        if (garbageCollected == 15)
         {
-            SceneManager.LoadScene("WinScreen");
+            SceneManager.LoadScene("WinScene");
         }
     }
 
