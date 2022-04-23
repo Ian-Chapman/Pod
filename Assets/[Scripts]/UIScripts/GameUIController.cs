@@ -2,15 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameUIController : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public AudioSource musicSource;
+    public AudioSource soundEffectSource;
     MovementComponent movementComponent;
 
     public GameObject pauseButton;
     public GameObject pausePanel;
     public GameObject topPanel;
+
+    public TextMeshProUGUI garbageText;
+    
+    [SerializeField]
+    public int garbageCollected;
+
+    public void Update()
+    {
+        garbageText.text = "" + garbageCollected.ToString();
+        CheckForWin();
+    }
 
     private void Start()
     {
@@ -24,7 +37,7 @@ public class GameUIController : MonoBehaviour
         pausePanel.SetActive(true);
         topPanel.SetActive(false);
         movementComponent.aimSensitivity = 0;
-        audioSource.Pause();
+        musicSource.Pause();
     }
 
     public void OnResumeButtonPressed()
@@ -33,7 +46,7 @@ public class GameUIController : MonoBehaviour
         pausePanel.SetActive(false);
         topPanel.SetActive(true);
         movementComponent.aimSensitivity = 3.5f;
-        audioSource.Play();
+        musicSource.Play();
     }
 
     public void OnRestartButtonPressed()
@@ -46,6 +59,14 @@ public class GameUIController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void CheckForWin()
+    {
+        if (garbageCollected >= 15)
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
     }
 
 }

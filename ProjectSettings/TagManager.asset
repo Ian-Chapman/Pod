@@ -8,6 +8,12 @@ TagManager:
   - Water Surface
   - Pickup
   - Grabber
+  - Crate
+  - MailBox
+  - FireExtinguisher
+  - HazardBarrel
+  - TrafficCone
+  - TrashBag1
   layers:
   - Default
   - TransparentFX

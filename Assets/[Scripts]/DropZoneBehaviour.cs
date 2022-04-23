@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DropZoneBehaviour : MonoBehaviour
 {
+    GameUIController gameUIController;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameUIController = GameObject.Find("GameCanvas").GetComponent<GameUIController>();
     }
 
     // Update is called once per frame
@@ -18,7 +20,9 @@ public class DropZoneBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if object debris enters this collider
-        //score++
+        if (other.gameObject.tag == "Pickup")
+        {
+            gameUIController.garbageCollected++;
+        }
     }
 }
