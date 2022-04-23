@@ -1985,7 +1985,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507578619 stripped
 GameObject:
@@ -6675,7 +6675,7 @@ Transform:
   - {fileID: 106504814}
   - {fileID: 1493548456}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1880247037
 GameObject:
@@ -7687,6 +7687,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5249491511674775677, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5249491511955556597, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -7695,9 +7699,33 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5249491513507602989, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565682069585760407, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565682070275001084, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565682070404194954, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565682070445483556, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5585135184863001667, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605463494611462376, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5915242716265737875, guid: 0bcd6d70fa9f9ba4b873507727bdfc5b, type: 3}
       propertyPath: m_IsActive
