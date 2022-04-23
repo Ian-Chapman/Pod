@@ -200,6 +200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caustics
       objectReference: {fileID: 0}
+    - target: {fileID: 6004660388675531282, guid: b43879c1ad7cefb4886582dd57ca658b, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6004660388675531283, guid: b43879c1ad7cefb4886582dd57ca658b, type: 3}
       propertyPath: m_RootOrder
       value: 0
