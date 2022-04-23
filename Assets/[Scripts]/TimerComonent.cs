@@ -35,7 +35,7 @@ public class TimerComonent : MonoBehaviour
         {
             timeLeft = 0;
             timerText.text = "0".ToString();
-            //SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");
         }
     }
 
