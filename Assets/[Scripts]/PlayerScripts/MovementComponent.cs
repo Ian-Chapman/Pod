@@ -188,7 +188,6 @@ public class MovementComponent : MonoBehaviour
             Rigidbody heldRig = heldObject.GetComponent<Rigidbody>();
             heldRig.useGravity = true;
             heldRig.isKinematic = false;
-            heldRig.drag = 1;
 
             heldObject.transform.parent = null;
             heldObject = null;
@@ -212,7 +211,6 @@ public class MovementComponent : MonoBehaviour
             Rigidbody objRig = pickObj.GetComponent<Rigidbody>();
             objRig.useGravity = false;
             objRig.isKinematic = true;
-            objRig.drag = 2;
 
             objRig.transform.parent = holdParent;
             heldObject = pickObj;

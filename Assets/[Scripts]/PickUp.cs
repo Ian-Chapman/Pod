@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public float pickUpRange = 5;
-    private GameObject heldObject;
+    private Rigidbody rigidbody;
 
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Grabber")
-    //    {
-    //        this.transform.parent = other.transform.;
-            
-    //    }
-    //}
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            rigidbody.freezeRotation = true;
+        }
+
+        if (other.gameObject.tag == "DropZone")
+        {
+            Destroy(rigidbody);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            rigidbody.freezeRotation = false;
+        }
+    }
 }
