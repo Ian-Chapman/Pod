@@ -70,6 +70,11 @@ public class MovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    //Fixed update used to avoid camera and animation stuttering
+    public void FixedUpdate()
+    {
         ///aiming/Looking
         ///horizontal rotation
         followTarget.transform.rotation *= Quaternion.AngleAxis(lookInput.x * aimSensitivity, Vector3.up);
@@ -141,11 +146,6 @@ public class MovementComponent : MonoBehaviour
     {
         lookInput = value.Get<Vector2>();
     }
-
-    //public void OnGrab(InputValue value)
-    //{
-    //    playerController.isGrabbing = value.isPressed;
-    //}
 
     public void OnGrab(InputValue value)
     {
