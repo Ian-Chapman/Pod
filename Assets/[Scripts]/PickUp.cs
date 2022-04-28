@@ -20,7 +20,7 @@ public class PickUp : MonoBehaviour
 
         if (other.gameObject.tag == "DropZone")
         {
-            Destroy(rigidbody);
+            StartCoroutine(DelayDestroyRigidbody());
         }
     }
 
@@ -30,5 +30,13 @@ public class PickUp : MonoBehaviour
         {
             rigidbody.freezeRotation = false;
         }
+    }
+
+
+    IEnumerator DelayDestroyRigidbody()
+    {
+        yield return new WaitForSeconds(.5f);
+        Destroy(rigidbody);
+
     }
 }
